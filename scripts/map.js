@@ -1,3 +1,4 @@
+
 // ID of the Google Spreadsheet. Replace this value with your ID.
 // const spreadsheetID = "1om0GebfkQRJV8bW7V0rSpfI5jjcgH0TGPmhcUJE4Mng";
 const spreadsheet_id = "1om0GebfkQRJV8bW7V0rSpfI5jjcgH0TGPmhcUJE4Mng";
@@ -12,20 +13,32 @@ function addMarker(aValue) {
   //console.log(aValue);
   let lat = parseFloat(aValue["Latitude"]);
   let lng = parseFloat(aValue["Longitude"]);
+  let type = aValue["Category of place (favorite, lost, memory)"]
+  typeLabel = ""
   let latLng;
+
+  if (type == "lost"){
+    typeLabel = "L"
+  }
+  else if (type == "memory"){
+    typeLabel = "M"
+  }
+  else if (type == "favorite"){
+    typeLabel = "F"
+  }
+
   if (!isNaN(lat) && !isNaN(lng)) {
     latLng = new google.maps.LatLng(lat, lng);
   }
   if (!latLng) {
     return;
   }
-
   let marker = new google.maps.Marker({
     animation: google.maps.Animation.DROP,
     map: map,
     position: latLng,
+    label: typeLabel  
   });
-
   google.maps.event.addListener(marker, 'click', function(){
       showInfo(marker, aValue);
   });
@@ -36,8 +49,8 @@ function addMarker(aValue) {
 function showInfo(aMarker, aValue){
   let content = "<h3>"+aValue["Name of place"]+"</h3>";
   content += "<p>Name: "+aValue["Your name"]+"</p>";
+  content += "<p>Category of place: "+aValue["Category of place (favorite, lost, memory)"]+"</p>";
   content += "<p>Significance of place: "+aValue["Briefly describe the significance of the place to you. "]+"</p>";
-  //content += "<p>Reader's name: "+aValue.gsx$yourname.$t+"</p>";
   info.setContent(content);
   info.open(map, aMarker);
 }
@@ -127,7 +140,7 @@ window.addEventListener("load", function () {
         let lng = result[0].geometry.location.lng();
   
         if (isNaN(lat) || isNaN(lng)) {
-          alert("Something's gone wrong. Try entering a different location for your book.");
+          alert("Something's gone wrong. Try entering a different location for your place.");
           return;
         }
   
