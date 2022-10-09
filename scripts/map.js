@@ -58,8 +58,8 @@ function showInfo(aMarker, aValue){
 function initMap() {
   info = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map_canvas"), {
-    center: new google.maps.LatLng(41.4993, -81.6944),
-    zoom: 10,
+    center: new google.maps.LatLng(41.5045, -81.6134),
+    zoom: 11,
     maxZoom: 20,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: [
