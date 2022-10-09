@@ -20,6 +20,7 @@
       <h2>Add a place to the map</h2>
       <form id="placeForm" method="post" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScKxwDh9TheIDBsAJGGF_OTzmyQ7pI-DyowI6aCNutj3y_zkA/formResponse" 
         target="hidden_iframe" onsubmit="submitted=true;">
+        
         <div class="book-input">
           <label for="yourname" aria-describedby="yourname_desc">Your Name</label>
           <div class="form-tip" id="yourname_desc">Note: This name will be public on the map.</div>
@@ -32,7 +33,12 @@
         </div>
 
         <div class="book-input">
-          <label for="placeSignigicance">Briefly describe Significance of Place</label>
+          <label for="categoryOfPlace">Category of Place <span class="required"> *</span> <br>(exactly as written: "lost", "memory", "favorite")<br> Examples: favorite bar, first kiss, that dang turnabout you always miss</label>
+          <input required id="categoryOfPlace" aria-label="Category of Place" name="entry.778829194" required>
+        </div>
+
+        <div class="book-input">
+          <label for="placeSignigicance">Briefly describe your experience with this place</label>
           <input id="placeSignigicance" aria-label="Significance" name="entry.1754839197">
         </div>
 
