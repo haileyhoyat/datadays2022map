@@ -58,8 +58,8 @@ function showInfo(aMarker, aValue){
 function initMap() {
   info = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map_canvas"), {
-    center: new google.maps.LatLng(41.5045, -81.6134),
-    zoom: 11,
+    center: new google.maps.LatLng(41.4993, -81.6944),
+    zoom: 10,
     maxZoom: 20,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: [
@@ -134,6 +134,13 @@ window.addEventListener("load", function () {
   function sendData() {
     let a = document.querySelector('input#location').value;
     const geo = new google.maps.Geocoder();
+
+    if(document.querySelector("input#categoryOfPlace").value !== "lost" && document.querySelector("input#categoryOfPlace").value !== "memory" && document.querySelector("input#categoryOfPlace").value !== "favorite")
+    {
+      alert("Please make sure your Category of Place is either 'lost', 'favorite', or 'memory'.");
+      return;
+    }
+
     geo.geocode({"address" : a }, function(result, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         let lat = result[0].geometry.location.lat();
